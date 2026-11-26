@@ -1,0 +1,143 @@
+{
+  "n_train": 213,
+  "n_test": 54,
+  "holdout_accuracy": 0.9074,
+  "cv5_accuracy": 0.8838,
+  "threshold": 0.7,
+  "model_coverage": 0.4815,
+  "accuracy_when_confident": 1.0,
+  "per_intent": {
+    "chat": {
+      "precision": 1.0,
+      "recall": 0.75,
+      "f1-score": 0.857
+    },
+    "edit_plan": {
+      "precision": 0.857,
+      "recall": 1.0,
+      "f1-score": 0.923
+    },
+    "log_meal": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0
+    },
+    "remaining_calories": {
+      "precision": 0.857,
+      "recall": 1.0,
+      "f1-score": 0.923
+    },
+    "set_preference": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0
+    },
+    "suggest_meal": {
+      "precision": 0.8,
+      "recall": 0.667,
+      "f1-score": 0.727
+    },
+    "today_summary": {
+      "precision": 0.857,
+      "recall": 0.857,
+      "f1-score": 0.857
+    },
+    "weekly_insight": {
+      "precision": 0.857,
+      "recall": 1.0,
+      "f1-score": 0.923
+    }
+  },
+  "labels": [
+    "chat",
+    "edit_plan",
+    "log_meal",
+    "remaining_calories",
+    "set_preference",
+    "suggest_meal",
+    "today_summary",
+    "weekly_insight"
+  ],
+  "confusion_matrix": [
+    [
+      6,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      1
+    ],
+    [
+      0,
+      6,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      8,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      6,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      7,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      1,
+      0,
+      0,
+      0,
+      4,
+      1,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      1,
+      0,
+      0,
+      6,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      6
+    ]
+  ]
+}

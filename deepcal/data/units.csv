@@ -1,0 +1,61 @@
+unit,food,grams
+katori,*,150
+katori,dal,150
+katori,rice,150
+katori,curd,120
+katori,raita,100
+katori,sabzi,120
+katori,kheer,120
+bowl,*,250
+bowl,rice,200
+bowl,dal,150
+bowl,curd,200
+bowl,salad,150
+bowl,oats porridge,250
+cup,*,240
+cup,chai,150
+cup,coffee,150
+cup,rice,160
+cup,milk,240
+glass,*,250
+glass,milk,240
+glass,chaas,250
+glass,lassi,250
+glass,juice,200
+glass,nimbu pani,250
+plate,*,300
+plate,rice,250
+plate,poha,200
+plate,idli,160
+plate,biryani,300
+plate,chicken biryani,300
+plate,samosa,120
+plate,momos,150
+plate,chowmein,300
+tbsp,*,15
+tbsp,ghee,14
+tbsp,sugar,12
+tbsp,peanut butter,16
+tsp,*,5
+tsp,sugar,4
+tsp,ghee,5
+spoon,*,10
+spoon,sugar,10
+spoon,ghee,10
+slice,*,30
+slice,pizza,107
+slice,bread,30
+handful,*,30
+handful,almonds,28
+handful,peanuts,30
+handful,makhana,15
+scoop,*,30
+scoop,whey protein,30
+scoop,ice cream,60
+g,*,1
+gram,*,1
+kg,*,1000
+ml,*,1
+litre,*,1000
+bottle,*,500
+can,*,330

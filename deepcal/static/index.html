@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>DeepCal AI – Smart Nutrition Tracker</title>
+<link rel="manifest" href="/manifest.json"><meta name="theme-color" content="#16a05a"><link rel="apple-touch-icon" href="/static/icons/icon-192.png">
+<style>
+:root{--bg:#f4f7f5;--card:#fff;--tx:#14231b;--mut:#6a7b71;--g:#16a05a;--g2:#0e7a43;--bd:#e3eae5;--warn:#e8590c;--sh:0 4px 20px rgba(20,35,27,.06)}
+@media(prefers-color-scheme:dark){:root{--bg:#0f1512;--card:#17201b;--tx:#e8f0ea;--mut:#8fa196;--bd:#25322a;--sh:none}}
+*{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,Segoe UI,sans-serif;background:var(--bg);color:var(--tx)}
+.hide{display:none!important}h1,h2,h3{margin:0}a{color:var(--g)}
+/* auth */
+#auth{min-height:100vh;display:grid;grid-template-columns:1.1fr 1fr}
+.hero{background:linear-gradient(135deg,#0e7a43,#16a05a 60%,#5bd18d);color:#fff;padding:60px;display:flex;flex-direction:column;justify-content:center}
+.hero h1{font-size:44px;line-height:1.1;margin:16px 0}.hero li{margin:10px 0;font-size:17px;opacity:.95}
+.logo{font-size:26px;font-weight:800}.logo span{color:#b8f5d0}
+.formw{display:flex;align-items:center;justify-content:center;padding:30px}.box{width:100%;max-width:380px}
+label{font-size:13px;color:var(--mut);font-weight:600}
+input,select,textarea{width:100%;padding:11px 12px;margin:5px 0 14px;border:1px solid var(--bd);border-radius:10px;background:var(--card);color:var(--tx);font:inherit}
+input:focus,select:focus{outline:2px solid var(--g);border-color:transparent}
+.btn{background:var(--g);color:#fff;border:0;padding:11px 20px;border-radius:10px;font-weight:600;cursor:pointer;font-size:15px}
+.btn:hover{background:var(--g2)}.btn.o{background:transparent;color:var(--g);border:1px solid var(--g)}.btn.w{width:100%}.btn:disabled{opacity:.5}
+.err{color:var(--warn);font-size:14px;min-height:20px}
+/* app */
+#app{display:grid;grid-template-columns:240px 1fr;min-height:100vh}
+aside{background:var(--card);border-right:1px solid var(--bd);padding:22px 14px;position:sticky;top:0;height:100vh;display:flex;flex-direction:column}
+aside .logo{padding:0 10px 22px;color:var(--g)}aside .logo span{color:var(--tx)}
+.nv{display:flex;gap:10px;align-items:center;padding:11px 12px;border-radius:10px;cursor:pointer;color:var(--mut);font-weight:600;margin-bottom:4px}
+.nv.on,.nv:hover{background:rgba(22,160,90,.12);color:var(--g)}
+.user{margin-top:auto;padding:12px;border-top:1px solid var(--bd);font-size:14px}
+main{padding:28px 32px;max-width:1150px;width:100%}
+.top{display:flex;justify-content:space-between;align-items:center;margin-bottom:22px;flex-wrap:wrap;gap:10px}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:16px;padding:20px;box-shadow:var(--sh);margin-bottom:18px}
+.g2{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:18px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:10px}
+.st{background:var(--bg);border-radius:12px;padding:12px;text-align:center}.st b{font-size:21px;display:block}.st small{color:var(--mut)}
+.ring{--p:0;width:170px;height:170px;border-radius:50%;background:conic-gradient(var(--g) calc(var(--p)*1%),var(--bd) 0);display:grid;place-items:center;margin:auto}
+.ring div{width:132px;height:132px;border-radius:50%;background:var(--card);display:grid;place-items:center;text-align:center}
+.bar{height:9px;background:var(--bd);border-radius:6px;overflow:hidden;margin:4px 0 12px}.bar i{display:block;height:100%;background:var(--g)}
+.tag{display:inline-block;background:var(--bg);padding:3px 10px;border-radius:20px;font-size:12px;color:var(--mut)}
+table{width:100%;border-collapse:collapse;font-size:14px}td,th{padding:9px 6px;border-bottom:1px solid var(--bd);text-align:left}th{color:var(--mut);font-weight:600}
+video,.pv{width:100%;border-radius:14px;background:#000;max-height:380px;object-fit:cover}
+.chart{display:flex;align-items:flex-end;gap:10px;height:130px}.chart div{flex:1;text-align:center;font-size:11px;color:var(--mut)}.chart i{display:block;background:var(--g);border-radius:6px 6px 0 0;margin-bottom:4px;min-height:3px}
+.tabs{display:flex;gap:8px;margin-bottom:14px}.tabs button{padding:8px 16px;border-radius:20px;border:1px solid var(--bd);background:var(--card);color:var(--tx);cursor:pointer;font-weight:600}.tabs button.on{background:var(--g);color:#fff;border-color:var(--g)}
+.day{border:1px solid var(--bd);border-radius:12px;padding:14px;margin-bottom:10px}.day h4{margin:0 0 8px;color:var(--g)}
+.m{display:flex;justify-content:space-between;gap:12px;padding:6px 0;border-bottom:1px dashed var(--bd);font-size:14px}
+.toast{position:fixed;bottom:22px;right:22px;background:#14231b;color:#fff;padding:12px 18px;border-radius:10px;z-index:9}
+.spin{display:inline-block;width:16px;height:16px;border:2px solid #fff6;border-top-color:#fff;border-radius:50%;animation:s 1s linear infinite;vertical-align:middle}@keyframes s{to{transform:rotate(360deg)}}
+@media(max-width:800px){#auth{grid-template-columns:1fr}.hero{padding:30px}.hero h1{font-size:30px}#app{grid-template-columns:1fr}
+aside{position:fixed;bottom:0;top:auto;height:auto;width:100%;flex-direction:row;z-index:5;padding:6px;border-top:1px solid var(--bd)}aside .logo,.user{display:none}.nv{flex:1;justify-content:center;font-size:12px;margin:0;padding:8px}main{padding:18px 14px 90px}}
+/* voice assistant */
+.chat{height:48vh;min-height:300px;overflow:auto;display:flex;flex-direction:column;gap:10px;padding:2px}
+.bub{max-width:90%;padding:10px 14px;border-radius:14px;font-size:15px;line-height:1.45;white-space:pre-wrap;word-wrap:break-word}
+.bub.u{align-self:flex-end;background:var(--g);color:#fff;border-bottom-right-radius:4px}
+.bub.b{align-self:flex-start;background:var(--bg);border:1px solid var(--bd);border-bottom-left-radius:4px}
+.vrow{display:flex;gap:8px;align-items:center}.vrow input,.vrow select{margin:0}
+.mic{width:46px;height:46px;border-radius:50%;border:0;background:var(--g);color:#fff;font-size:20px;cursor:pointer;flex:none}
+[data-mic].rec{background:#d6336c!important;color:#fff!important;border-color:#d6336c!important;animation:pulse 1.2s infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 #d6336c66}100%{box-shadow:0 0 0 14px #d6336c00}}
+@media(prefers-reduced-motion:reduce){[data-mic].rec{animation:none}}
+.rcard{margin-top:10px;background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:10px 12px;min-width:280px}
+.rcard .m:last-child{border-bottom:0}
+.warn{color:var(--warn);font-size:13px;margin:6px 0}
+.chip{display:inline-flex;gap:6px;align-items:center;background:var(--bg);border:1px solid var(--bd);border-radius:20px;padding:4px 10px;margin:0 6px 6px 0;font-size:13px}
+.chip a{text-decoration:none;color:var(--mut)}
+.ex li{margin:6px 0;color:var(--mut);font-size:14px}.ex b{color:var(--tx);font-weight:600}
+:focus-visible{outline:2px solid var(--g);outline-offset:2px}
+</style></head><body>
+
+<!-- AUTH -->
+<div id="auth"><div class="hero"><div class="logo">Deep<span>Cal</span> AI</div>
+ <h1>Know exactly what's on your plate.</h1>
+ <ul><li>📸 Snap or live-scan any food, home-cooked, restaurant or packaged</li><li>🔥 Instant calories, protein, carbs, fat, fiber, sugar &amp; sodium</li><li>🥗 Personalised BMI, calorie target &amp; 7-day diet plan</li><li>📊 Daily tracker with weekly progress</li></ul></div>
+ <div class="formw"><div class="box"><h2 id="atitle">Welcome back</h2><p style="color:var(--mut)" id="asub">Login to your account</p>
+  <div id="nmw" class="hide"><label>Full name</label><input id="nm"></div>
+  <label>Email</label><input id="em" type="email"><label>Password</label><input id="pw" type="password">
+  <div class="err" id="aerr"></div><button class="btn w" id="abtn">Login</button>
+  <p style="text-align:center;font-size:14px"><span id="aq">New here?</span> <a href="#" id="asw">Create account</a></p></div></div></div>
+
+<!-- APP -->
+<div id="app" class="hide">
+<aside><div class="logo">Deep<span>Cal</span></div>
+ <div class="nv on" data-p="dash">📊 <span>Dashboard</span></div><div class="nv" data-p="scan">📸 <span>Scan Food</span></div>
+ <div class="nv" data-p="voice">🎙️ <span>Voice</span></div>
+ <div class="nv" data-p="plan">🥗 <span>BMI &amp; Diet</span></div>
+ <div class="user"><b id="un"></b><br><a href="#" id="lo">Logout</a></div></aside>
+<main>
+<!-- DASH -->
+<section id="dash" class="pg"><div class="top"><div><h2 id="hello"></h2><span style="color:var(--mut)">Today's nutrition overview</span></div><button class="btn" onclick="go('scan')">+ Scan food</button></div>
+ <div class="g2"><div class="card"><h3>Calories</h3><br><div class="ring" id="ring"><div><div><b style="font-size:28px" id="rk">0</b><small id="rt" style="color:var(--mut)"></small></div></div></div></div>
+ <div class="card"><h3>Macros</h3><br><div id="macros"></div></div></div>
+ <div class="g2"><div class="card"><h3>Last 7 days (kcal)</h3><br><div class="chart" id="chart"></div></div>
+ <div class="card"><h3>Body metrics</h3><br><div class="grid" id="bm"><p style="color:var(--mut)">Complete your profile in “BMI &amp; Diet”.</p></div></div></div>
+ <div class="card"><h3>Today's meals</h3><br><table id="tbl"></table></div>
+ <div class="card"><div class="top" style="margin:0 0 10px"><h3>Weekly insight</h3><div><button class="btn o" id="wk">Generate</button> <button class="btn o" id="wkspeak" title="Read aloud" aria-label="Read aloud">🔊</button></div></div>
+  <p id="wktxt" style="color:var(--mut);margin:0">Tap Generate for a short summary of your last 7 days. General guidance, not medical advice.</p></div></section>
+
+<!-- SCAN -->
+<section id="scan" class="pg hide"><div class="top"><h2>Scan food</h2></div>
+ <div class="tabs"><button class="on" data-m="up">📁 Upload / Camera photo</button><button data-m="live">🔴 Live detection</button></div>
+ <div class="g2"><div class="card">
+  <div id="m-up"><input type="file" id="file" accept="image/*" capture="environment"><img id="pv" class="pv hide"><br><button class="btn" id="an">Analyze</button></div>
+  <div id="m-live" class="hide"><video id="vid" autoplay playsinline muted></video><canvas id="cv" class="hide"></canvas><br>
+   <button class="btn" id="cam">Start camera</button> <button class="btn o" id="snap">Detect now</button>
+   <label style="margin-left:10px"><input type="checkbox" id="auto" style="width:auto;margin:0 4px"> Auto-scan every 6 s</label></div>
+  <p id="st" style="color:var(--mut)"></p></div>
+ <div class="card hide" id="res"><h3>Detected</h3><div id="items"></div><div class="grid" id="tots" style="margin:12px 0"></div>
+  <p><b>Health score: <span id="hs"></span>/10</b></p><p id="hn" style="color:var(--mut)"></p><ul id="sg"></ul>
+  <button class="btn o w" id="scmic" data-mic style="margin-bottom:12px">🎤 Correct by voice (“it was two rotis”)</button>
+  <label>Add to meal</label><select id="meal"><option>Breakfast</option><option>Lunch</option><option>Dinner</option><option>Snack</option></select>
+  <button class="btn w" id="add">Add to my day</button></div></div></section>
+
+<!-- VOICE -->
+<section id="voice" class="pg hide"><div class="top"><div><h2>Voice assistant</h2><span style="color:var(--mut)">Log meals, ask for totals, edit your plan: in English, Hindi or Hinglish.</span></div></div>
+ <div class="g2"><div class="card">
+  <div class="chat" id="chat" aria-live="polite"></div>
+  <div class="vrow" style="margin-top:12px"><button class="mic" id="mic" data-mic title="Tap to speak" aria-label="Speak">🎤</button><input id="vtxt" placeholder="Speak, or type: “maine do roti aur dal khayi”"><button class="btn" id="vsend">Send</button></div>
+  <div class="vrow" style="margin-top:10px;flex-wrap:wrap"><select id="vlang" aria-label="Language" style="width:auto"><option value="en-IN">English (India)</option><option value="hi-IN">हिन्दी / Hinglish</option></select>
+   <select id="veng" aria-label="Speech engine" style="width:auto"><option value="browser">Browser mic (fast)</option><option value="audio">Record + Gemini (best for Hinglish)</option></select>
+   <label style="display:flex;align-items:center;gap:4px"><input type="checkbox" id="vspeak" checked style="width:auto;margin:0"> Speak replies</label></div>
+  <p id="vst" style="color:var(--mut);margin:8px 0 0;min-height:20px"></p></div>
+ <div><div class="card"><h3>Your food preferences</h3><br><div id="prefs"><span style="color:var(--mut)">None yet.</span></div><small style="color:var(--mut)">Say “I'm allergic to peanuts” or “I don't eat onion”. They are used in meal plans and warnings.</small></div>
+  <div class="card"><h3>Try saying</h3><ul class="ex" style="padding-left:18px;margin:10px 0 0"><li><b>Log:</b> “I ate two rotis and a bowl of dal for lunch”</li><li><b>Hinglish:</b> “maine subah do paratha aur chai li”</li><li><b>Totals:</b> “how much protein have I had today?”</li><li><b>Budget:</b> “how many calories do I have left?”</li><li><b>Plan:</b> “swap Wednesday's dinner for something vegetarian”</li><li><b>Coach:</b> “why am I low on protein this week?”</li></ul></div></div></div></section>
+
+<!-- PLAN -->
+<section id="plan" class="pg hide"><div class="top"><h2>BMI &amp; Diet plan</h2></div>
+ <div class="g2"><div class="card"><div class="grid" style="grid-template-columns:1fr 1fr">
+  <div><label>Age</label><input id="age" type="number" value="22"></div><div><label>Sex</label><select id="sex"><option>male</option><option>female</option></select></div>
+  <div><label>Weight (kg)</label><input id="wt" type="number" value="65"></div><div><label>Height (cm)</label><input id="ht" type="number" value="170"></div></div>
+  <label>Activity</label><select id="act"><option value="1.2">Sedentary</option><option value="1.4" selected>Light</option><option value="1.6">Moderate</option><option value="1.8">Very active</option></select>
+  <label>Goal</label><select id="goal"><option value="lose">Lose weight</option><option value="maintain" selected>Maintain</option><option value="gain">Gain weight / muscle</option></select>
+  <label>Diet type</label><select id="diet"><option>vegetarian</option><option>non-vegetarian</option><option>eggetarian</option><option>vegan</option></select>
+  <label>Cuisine</label><input id="cui" value="Indian">
+  <label>Health conditions / allergies (optional)</label><input id="cond" placeholder="e.g. diabetes, lactose intolerance">
+  <button class="btn w" id="gp">Generate BMI &amp; 7-day diet plan</button><p class="err" id="perr"></p></div>
+ <div class="card" id="bmw"><h3>Your numbers</h3><br><div class="grid" id="bmi2"></div><p id="dsum" style="color:var(--mut)"></p></div></div>
+ <div id="pl"></div></section>
+</main></div>
+<div class="toast hide" id="toast"></div>
+
+<script>
+const $=i=>document.getElementById(i);let T=localStorage.getItem('dc_t'),mode='login',found=null,stream=null,timer=null,busy=false;
+const toast=m=>{$('toast').textContent=m;$('toast').classList.remove('hide');setTimeout(()=>$('toast').classList.add('hide'),2800)};
+async function api(p,o={}){o.headers={...(o.headers||{}),Authorization:'Bearer '+T};if(o.json){o.headers['Content-Type']='application/json';o.body=JSON.stringify(o.json);o.method=o.method||'POST'}
+ const r=await fetch('/api'+p,o);const d=await r.json().catch(()=>({}));if(r.status==401&&T){logout();throw'Session expired'}if(!r.ok)throw(d.detail||'Error');return d}
+/* auth */
+$('asw').onclick=e=>{e.preventDefault();mode=mode=='login'?'reg':'login';const l=mode=='login';$('nmw').classList.toggle('hide',l);$('atitle').textContent=l?'Welcome back':'Create your account';
+ $('asub').textContent=l?'Login to your account':'Start tracking in 30 seconds';$('abtn').textContent=l?'Login':'Sign up';$('aq').textContent=l?'New here?':'Already registered?';$('asw').textContent=l?'Create account':'Login'};
+$('abtn').onclick=async()=>{$('aerr').textContent='';try{const b={email:$('em').value,password:$('pw').value};if(mode=='reg')b.name=$('nm').value;
+ const r=await fetch('/api/'+(mode=='reg'?'register':'login'),{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(b)});const d=await r.json();
+ if(!r.ok)throw(Array.isArray(d.detail)?'Please fill all fields correctly':d.detail);T=d.token;localStorage.setItem('dc_t',T);boot()}catch(e){$('aerr').textContent=e}};
+function logout(){localStorage.removeItem('dc_t');T=null;stopCam();$('app').classList.add('hide');$('auth').classList.remove('hide')}
+$('lo').onclick=e=>{e.preventDefault();logout()};
+async function boot(){if(!T)return;try{const m=await api('/me');$('auth').classList.add('hide');$('app').classList.remove('hide');$('un').textContent=m.name;
+ $('hello').textContent='Hello, '+m.name.split(' ')[0]+' 👋';if(!m.gemini)toast('⚠ Add GEMINI_API_KEY in .env to enable AI scanning');
+ if(m.profile&&m.profile.age){const p=m.profile;['age','sex','wt:weight','ht:height','act:activity','goal','diet','cui:cuisine','cond:conditions'].forEach(x=>{const[i,k]=x.split(':');if(p[k||i]!==undefined)$(i).value=p[k||i]})}
+ go('dash');const lp=await api('/diet-plan');if(lp)renderPlan(lp)}catch(e){logout()}}
+/* nav */
+function go(p){document.querySelectorAll('.pg').forEach(x=>x.classList.toggle('hide',x.id!=p));document.querySelectorAll('.nv').forEach(x=>x.classList.toggle('on',x.dataset.p==p));if(p=='dash')dash();if(p!='scan')stopCam();if(p=='voice')openVoice();else{stopListen();window.speechSynthesis&&speechSynthesis.cancel()}}
+document.querySelectorAll('.nv').forEach(n=>n.onclick=()=>go(n.dataset.p));
+const st=(l,v,u='')=>`<div class="st"><b>${v}${u}</b><small>${l}</small></div>`;
+/* dashboard */
+async function dash(){const s=await api('/summary'),t=s.total,tg=s.plan?s.plan.target:2000;
+ $('ring').style.setProperty('--p',Math.min(100,t.calories/tg*100));$('rk').textContent=Math.round(t.calories);$('rt').textContent=' / '+tg+' kcal';
+ const mc=(n,v,g)=>`<div style="display:flex;justify-content:space-between"><span>${n}</span><b>${Math.round(v)}${g?' / '+g:''} g</b></div><div class="bar"><i style="width:${Math.min(100,g?v/g*100:50)}%"></i></div>`;
+ const P=s.plan||{};$('macros').innerHTML=mc('Protein',t.protein,P.protein_g)+mc('Carbs',t.carbs,P.carbs_g)+mc('Fat',t.fat,P.fat_g)+mc('Fiber',t.fiber,30);
+ const mx=Math.max(...s.week.map(w=>w.kcal),tg);$('chart').innerHTML=s.week.map(w=>`<div><i style="height:${w.kcal/mx*100}px"></i>${w.day}</div>`).join('');
+ if(s.plan)$('bm').innerHTML=st('BMI',s.plan.bmi)+st('Status',s.plan.category)+st('BMR',s.plan.bmr)+st('Water',s.plan.water_l,' L');
+ $('tbl').innerHTML='<tr><th>Meal</th><th>Food</th><th>g</th><th>kcal</th><th>P/C/F</th><th></th></tr>'+(s.meals.map(m=>`<tr><td>${m.meal}</td><td>${m.food}</td><td>${Math.round(m.grams)}</td><td>${Math.round(m.calories)}</td><td>${Math.round(m.protein)}/${Math.round(m.carbs)}/${Math.round(m.fat)}</td><td><a href="#" onclick="dm(${m.id});return false">✕</a></td></tr>`).join('')||'<tr><td colspan=6 style="color:var(--mut)">No meals yet. Scan your first meal!</td></tr>')}
+async function dm(i){await api('/meals/'+i,{method:'DELETE'});dash()}
+/* scan */
+document.querySelectorAll('.tabs button').forEach(b=>b.onclick=()=>{document.querySelectorAll('.tabs button').forEach(x=>x.classList.toggle('on',x==b));
+ $('m-up').classList.toggle('hide',b.dataset.m!='up');$('m-live').classList.toggle('hide',b.dataset.m!='live');if(b.dataset.m=='up')stopCam()});
+$('file').onchange=e=>{const f=e.target.files[0];if(f){$('pv').src=URL.createObjectURL(f);$('pv').classList.remove('hide')}};
+async function analyze(blob){if(busy)return;busy=true;$('st').innerHTML='<span class="spin" style="border-color:#16a05a55;border-top-color:#16a05a"></span> AI is analyzing…';
+ try{const fd=new FormData();fd.append('file',blob,'f.jpg');const r=await api('/analyze',{method:'POST',body:fd});show(r);$('st').textContent=r.items.length?'':'No food detected, try a clearer view.'}
+ catch(e){$('st').textContent='⚠ '+e}busy=false}
+$('an').onclick=()=>{const f=$('file').files[0];if(!f)return toast('Choose a photo first');analyze(f)};
+function show(r){found=r;$('res').classList.remove('hide');const it=r.items||[];
+ $('items').innerHTML=it.map((x,i)=>`<div class="day"><div class="m" style="border:0"><b>${x.name}</b><span class="tag">${x.category||''} · ${Math.round(x.confidence||0)}%</span></div>
+ <div class="grid" style="grid-template-columns:repeat(4,1fr)"><div><small>Grams</small><input type="number" value="${Math.round(x.grams)}" onchange="rescale(${i},this.value)"></div>
+ ${st('kcal',Math.round(x.calories))}${st('Protein',Math.round(x.protein),'g')}${st('Carbs',Math.round(x.carbs),'g')}</div></div>`).join('');totals();
+ $('hs').textContent=r.health_score||'-';$('hn').textContent=r.health_note||'';$('sg').innerHTML=(r.suggestions||[]).map(s=>`<li>${s}</li>`).join('')}
+function rescale(i,g){const x=found.items[i],k=g/(x.grams||1);['calories','protein','fat','carbs','fiber','sugar','sodium_mg'].forEach(f=>x[f]=(x[f]||0)*k);x.grams=+g;show(found)}
+function totals(){const s=f=>Math.round(found.items.reduce((a,x)=>a+(x[f]||0),0));$('tots').innerHTML=st('Total kcal',s('calories'))+st('Protein',s('protein'),'g')+st('Carbs',s('carbs'),'g')+st('Fat',s('fat'),'g')}
+$('add').onclick=async()=>{if(!found||!found.items.length)return;await api('/meals',{json:{meal:$('meal').value,items:found.items}});toast('Added to your day ✔');$('res').classList.add('hide');found=null}
+/* live camera */
+async function startCam(){try{stream=await navigator.mediaDevices.getUserMedia({video:{facingMode:'environment',width:{ideal:1280}}});$('vid').srcObject=stream;$('cam').textContent='Stop camera'}catch(e){toast('Camera blocked. Allow camera permission (use localhost or https).')}}
+function stopCam(){if(stream){stream.getTracks().forEach(t=>t.stop());stream=null}clearInterval(timer);$('auto').checked=false;$('cam').textContent='Start camera'}
+$('cam').onclick=()=>stream?stopCam():startCam();
+function grab(){return new Promise(res=>{const v=$('vid'),c=$('cv'),w=Math.min(800,v.videoWidth);if(!w)return res(null);c.width=w;c.height=w*v.videoHeight/v.videoWidth;c.getContext('2d').drawImage(v,0,0,c.width,c.height);c.toBlob(res,'image/jpeg',.8)})}
+$('snap').onclick=async()=>{const b=await grab();b?analyze(b):toast('Start the camera first')};
+$('auto').onchange=e=>{clearInterval(timer);if(e.target.checked){if(!stream)startCam();timer=setInterval(async()=>{const b=await grab();if(b)analyze(b)},6000)}};
+/* plan */
+function prof(){return{age:+$('age').value,weight:+$('wt').value,height:+$('ht').value,sex:$('sex').value,activity:+$('act').value,goal:$('goal').value,diet:$('diet').value,cuisine:$('cui').value,conditions:$('cond').value}}
+$('gp').onclick=async()=>{$('perr').textContent='';$('gp').innerHTML='<span class="spin"></span> Creating your plan (20-40 s)…';$('gp').disabled=true;
+ try{renderPlan(await api('/diet-plan',{json:prof()}))}catch(e){$('perr').textContent=e}$('gp').textContent='Generate BMI & 7-day diet plan';$('gp').disabled=false}
+function renderPlan(r){const n=r.numbers;$('bmi2').innerHTML=st('BMI',n.bmi)+st('Category',n.category)+st('Daily kcal',n.target)+st('Protein',n.protein_g,'g')+st('Carbs',n.carbs_g,'g')+st('Fat',n.fat_g,'g')+st('Water',n.water_l,'L')+st('Ideal weight',n.ideal_weight);
+ $('dsum').textContent=r.summary||'';const L=a=>(a||[]).map(x=>`<li>${x}</li>`).join('');
+ $('pl').innerHTML=`<div class="g2"><div class="card"><h3>✅ Eat more</h3><ul>${L(r.eat_more)}</ul></div><div class="card"><h3>🚫 Limit / avoid</h3><ul>${L(r.avoid)}</ul></div></div>
+ <div class="card"><h3>🌿 Healthy habits</h3><ul>${L(r.habits)}</ul></div>
+ <div class="card"><h3>7-day meal plan</h3><br>${(r.days||[]).map(d=>`<div class="day"><h4>${d.day} <small style="color:var(--mut)">· ${d.total_kcal||''} kcal</small></h4>${(d.meals||[]).map(m=>`<div class="m"><span><b>${m.name}</b> – ${m.menu}</span><span>${m.kcal} kcal</span></div>`).join('')}</div>`).join('')}
+ <small style="color:var(--mut)">${r.disclaimer||''}</small></div>`}
+
+/* ================= voice assistant ================= */
+const SR=window.SpeechRecognition||window.webkitSpeechRecognition;let rec=null,mr=null,chunks=[],listening=false,greeted=false;
+const esc=s=>String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+if(!SR)$('veng').value='audio';
+function bub(cls,html){const d=document.createElement('div');d.className='bub '+cls;d.innerHTML=html;$('chat').appendChild(d);$('chat').scrollTop=1e9;return d}
+function speak(msg,force){if((!force&&!$('vspeak').checked)||!window.speechSynthesis)return;speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(msg);u.lang=$('vlang').value;speechSynthesis.speak(u)}
+function openVoice(){if(!greeted){greeted=true;bub('b','Hi! Tap the 🎤 and tell me what you ate, or ask “how many calories are left?”. I understand English, Hindi and Hinglish.')}loadPrefs()}
+function setRec(on){listening=on;document.querySelectorAll('[data-mic]').forEach(b=>b.classList.toggle('rec',on));$('vst').textContent=on?'Listening… tap again to stop':''}
+function stopListen(){try{if(rec&&listening)rec.stop();if(mr&&mr.state==='recording')mr.stop()}catch(e){}}
+function listen(cb){
+ if(listening)return stopListen();
+ if($('veng').value==='audio'||!SR)return audioListen(cb);
+ rec=new SR();rec.lang=$('vlang').value;rec.interimResults=false;rec.maxAlternatives=1;
+ rec.onresult=e=>cb(e.results[0][0].transcript);
+ rec.onerror=e=>toast(e.error==='not-allowed'?'Microphone blocked. Allow it in the browser (use localhost or https).':'Could not hear you ('+e.error+'). Try again, type instead, or switch to “Record + Gemini”.');
+ rec.onend=()=>setRec(false);rec.start();setRec(true)}
+async function audioListen(cb){
+ try{const s=await navigator.mediaDevices.getUserMedia({audio:true});chunks=[];mr=new MediaRecorder(s);
+  mr.ondataavailable=e=>chunks.push(e.data);
+  mr.onstop=async()=>{s.getTracks().forEach(t=>t.stop());setRec(false);$('vst').textContent='Transcribing…';
+   try{const wav=await toWav(new Blob(chunks,{type:mr.mimeType}));const fd=new FormData();fd.append('file',wav,'v.wav');const r=await api('/transcribe',{method:'POST',body:fd});cb(r.text)}catch(e){toast('⚠ '+e)}
+   $('vst').textContent=''};
+  mr.start();setRec(true);setTimeout(()=>{if(mr&&mr.state==='recording')mr.stop()},12000)}   /* auto-stop after 12 s */
+ catch(e){toast('Microphone blocked or unavailable.')}}
+/* MediaRecorder gives webm/mp4; convert to 16 kHz mono WAV, which Gemini accepts on every browser */
+async function toWav(blob){const ctx=new (window.AudioContext||window.webkitAudioContext)();const buf=await ctx.decodeAudioData(await blob.arrayBuffer());ctx.close();
+ const rate=16000,off=new OfflineAudioContext(1,Math.max(1,Math.ceil(buf.duration*rate)),rate),src=off.createBufferSource();src.buffer=buf;src.connect(off.destination);src.start();
+ const out=(await off.startRendering()).getChannelData(0),v=new DataView(new ArrayBuffer(44+out.length*2)),w=(o,t)=>[...t].forEach((c,i)=>v.setUint8(o+i,c.charCodeAt(0)));
+ w(0,'RIFF');v.setUint32(4,36+out.length*2,true);w(8,'WAVEfmt ');v.setUint32(16,16,true);v.setUint16(20,1,true);v.setUint16(22,1,true);v.setUint32(24,rate,true);v.setUint32(28,rate*2,true);v.setUint16(32,2,true);v.setUint16(34,16,true);w(36,'data');v.setUint32(40,out.length*2,true);
+ out.forEach((x,i)=>v.setInt16(44+i*2,Math.max(-1,Math.min(1,x))*0x7fff,true));return new Blob([v],{type:'audio/wav'})}
+
+async function sendVoice(text){text=(text||'').trim();if(!text)return;bub('u',esc(text));$('vtxt').value='';
+ const th=bub('b','<span class="spin" style="border-color:#16a05a55;border-top-color:#16a05a"></span>');
+ try{const r=await api('/voice',{json:{text}});th.remove();const d=bub('b',esc(r.reply));if(r.card)renderCard(d,r);speak(r.reply)}
+ catch(e){th.remove();bub('b','⚠ '+esc(e))}}
+$('mic').onclick=()=>listen(sendVoice);$('vsend').onclick=()=>sendVoice($('vtxt').value);$('vtxt').onkeydown=e=>{if(e.key==='Enter')sendVoice($('vtxt').value)};
+
+function renderCard(d,r){const t=r.card.type;
+ if(t=='meal')mealCard(d,r);
+ else if(t=='plan_edit')planCard(d,r);
+ else if(t=='suggestions')d.insertAdjacentHTML('beforeend','<div class="rcard">'+(r.card.items||[]).map(x=>`<div class="m"><span><b>${esc(x.name)}</b><br><small style="color:var(--mut)">${esc(x.why)}</small></span><span>${Math.round(x.kcal||0)} kcal</span></div>`).join('')+'</div>');
+ else if(t=='week'){const days=r.card.data.per_day,mx=Math.max(...days.map(x=>x.calories),1);d.insertAdjacentHTML('beforeend','<div class="rcard"><div class="chart" style="height:90px">'+days.map(x=>`<div><i style="height:${x.calories/mx*70}px"></i>${x.day.slice(5)}</div>`).join('')+'</div></div>')}
+ else if(t=='preferences')loadPrefs()}
+
+function mealCard(d,r){const c=r.card,items=c.items.map(x=>({...x}));let meal=c.meal;const box=document.createElement('div');box.className='rcard';d.appendChild(box);
+ const draw=()=>{const tot=Math.round(items.reduce((a,x)=>a+x.calories,0));
+  box.innerHTML=`<div class="m" style="align-items:center"><b>Review before saving</b><select class="ms" aria-label="Meal" style="width:auto;margin:0">${['breakfast','lunch','dinner','snack'].map(m=>`<option ${m==meal?'selected':''}>${m}</option>`).join('')}</select></div>`+
+  (c.meal_guessed?'<div class="warn">I guessed the meal from the time of day. Change it if needed.</div>':'')+
+  items.map((x,i)=>`<div class="m"><span><b>${esc(x.name)}</b>${x.uncertain?` <span class="tag" style="color:var(--warn)">check: heard “${esc(x.heard_as)}”</span>`:''}${x.source=='gemini'?' <span class="tag">AI estimate</span>':''}<br><small style="color:var(--mut)">${Math.round(x.calories)} kcal · P ${Math.round(x.protein)} · C ${Math.round(x.carbs)} · F ${Math.round(x.fat)}</small></span>
+   <span style="display:flex;gap:6px;align-items:center"><input type="number" class="gi" data-i="${i}" aria-label="Grams" value="${Math.round(x.grams)}" style="width:76px;margin:0"> g <a href="#" class="rm" data-i="${i}" aria-label="Remove">✕</a></span></div>`).join('')+
+  (c.warnings||[]).map(w=>`<div class="warn">⚠ ${esc(w)}</div>`).join('')+
+  `<div class="m"><b>Total ${tot} kcal</b><button class="btn ok">Confirm &amp; save</button></div>`;
+  box.querySelector('.ms').onchange=e=>meal=e.target.value;
+  box.querySelectorAll('.gi').forEach(inp=>inp.onchange=()=>{const x=items[+inp.dataset.i],g=Math.max(0,+inp.value),k=g/(x.grams||1);['calories','protein','fat','carbs','fiber','sugar','sodium_mg'].forEach(f=>x[f]=(x[f]||0)*k);x.grams=g;draw()});
+  box.querySelectorAll('.rm').forEach(a=>a.onclick=e=>{e.preventDefault();items.splice(+a.dataset.i,1);draw()});
+  box.querySelector('.ok').onclick=async()=>{if(!items.length)return toast('Nothing to save');
+   try{await api('/meals/confirm',{json:{log_id:r.log_id,meal,items}});box.innerHTML='<b>✔ Saved to '+esc(meal)+'</b>';speak('Saved');if(!$('dash').classList.contains('hide'))dash()}catch(e){toast('⚠ '+e)}}};
+ draw()}
+
+function planCard(d,r){const c=r.card,box=document.createElement('div');box.className='rcard';d.appendChild(box);
+ box.innerHTML=`<div class="m"><span><b>${esc(c.day)} · ${esc(c.slot)}</b></span></div><div class="m"><span><small style="color:var(--mut)">Now</small><br>${esc(c.before.menu)}</span><span>${Math.round(c.before.kcal||0)} kcal</span></div>
+  <div class="m"><span><small style="color:var(--g)">Change to</small><br><b>${esc(c.after.menu)}</b></span><span>${Math.round(c.after.kcal||0)} kcal</span></div><div class="m"><span></span><button class="btn ok">Update my plan</button></div>`;
+ box.querySelector('.ok').onclick=async()=>{try{const p=await api('/plan/confirm',{json:{log_id:r.log_id,day:c.day,slot:c.slot,menu:c.after.menu,kcal:c.after.kcal}});box.innerHTML='<b>✔ Plan updated</b>';speak('Plan updated');if(p&&p.numbers)renderPlan(p)}catch(e){toast('⚠ '+e)}}}
+
+async function loadPrefs(){try{const p=await api('/preferences'),el=$('prefs'),chips=[];
+ if(p.diet)chips.push([p.diet+' diet',p.diet]);(p.allergies||[]).forEach(a=>chips.push(['allergic: '+a,a]));(p.avoid||[]).filter(a=>!(p.allergies||[]).includes(a)).forEach(a=>chips.push(['avoids '+a,a]));
+ el.innerHTML=chips.length?chips.map(([t,k])=>`<span class="chip">${esc(t)} <a href="#" data-k="${esc(k)}" aria-label="Remove">✕</a></span>`).join(''):'<span style="color:var(--mut)">None yet.</span>';
+ el.querySelectorAll('a').forEach(a=>a.onclick=async e=>{e.preventDefault();await api('/preferences/'+encodeURIComponent(a.dataset.k),{method:'DELETE'});loadPrefs()})}catch(e){}}
+
+/* weekly insight on the dashboard */
+$('wk').onclick=async()=>{$('wk').disabled=true;$('wktxt').textContent='Writing your weekly insight…';
+ try{const r=await api('/insights/weekly');$('wktxt').textContent=r.reply}catch(e){$('wktxt').textContent='⚠ '+e}$('wk').disabled=false};
+$('wkspeak').onclick=()=>speak($('wktxt').textContent,true);
+
+/* photo + voice: "that's actually two rotis" */
+$('scmic').onclick=()=>{if(!found||!found.items.length)return toast('Scan a meal first');
+ listen(async t=>{try{const r=await api('/scan/correct',{json:{items:found.items,text:t}});found.items=r.items;show(found);toast('Updated: “'+t+'”')}catch(e){toast('⚠ '+e)}})};
+
+if('serviceWorker' in navigator)navigator.serviceWorker.register('/sw.js').catch(()=>{});
+boot();
+</script></body></html>

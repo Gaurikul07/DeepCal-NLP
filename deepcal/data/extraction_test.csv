@@ -1,0 +1,53 @@
+text,lang,expected
+I ate two rotis and a bowl of dal for lunch,en,roti:2:;dal:1:bowl
+had 3 idli with sambar for breakfast,en,idli:3:;sambar:1:
+add a glass of milk,en,milk:1:glass
+I had 200 g paneer,en,paneer:200:g
+log one banana,en,banana:1:
+I drank a cup of chai,en,chai:1:cup
+two eggs and toast,en,egg:2:;bread:1:
+a bowl of oats,en,oats porridge:1:bowl
+I ate half a katori curd,en,curd:0.5:katori
+three samosa for snack,en,samosa:3:
+one plate poha,en,poha:1:plate
+had 2 dosa and sambar,en,dosa:2:;sambar:1:
+ate 250 grams rice,en,rice:250:g
+a slice of pizza,en,pizza:1:slice
+a handful of almonds,en,almonds:1:handful
+I had a glass of lassi and a banana,en,lassi:1:glass;banana:1:
+two spoons of peanut butter,en,peanut butter:2:spoon
+had one and a half roti,en,roti:1.5:
+1 cup coffee and 2 biscuits,en,coffee:1:cup;biscuit:2:
+a bowl of rajma and rice,en,rajma:1:bowl;rice:1:
+maine subah do paratha aur chai li,hi,paratha:2:;chai:1:
+ek katori dal,hi,dal:1:katori
+1 bowl daal,hi,dal:1:bowl
+maine lunch mein ek katori dal aur do roti khayi,hi,dal:1:katori;roti:2:
+aaj raat dinner me paneer butter masala aur naan khaya,hi,paneer butter masala:1:;naan:1:
+mene ek plate poha khaya,hi,poha:1:plate
+ek glass lassi piya,hi,lassi:1:glass
+mene aadha paratha khaya,hi,paratha:0.5:
+dedh katori rajma aur 2 roti,hi,rajma:1.5:katori;roti:2:
+maine do chapati aur ek katori sabzi khayi,hi,roti:2:;sabzi:1:katori
+subah nashte mein ek plate upma khaya,hi,upma:1:plate
+maine teen idli khayi,hi,idli:3:
+ek glass doodh piya,hi,milk:1:glass
+maine do ande khaye,hi,egg:2:
+shaam ko ek samosa aur chai li,hi,samosa:1:;chai:1:
+dopahar mein ek katori chole aur teen roti khayi,hi,chole:1:katori;roti:3:
+maine ek cup chai aur do biscuit liye,hi,chai:1:cup;biscuit:2:
+raat ko ek katori khichdi khayi,hi,khichdi:1:katori
+maine ek plate chowmein khaya,hi,chowmein:1:plate
+maine do phulka aur ek katori dahi li,hi,roti:2:;curd:1:katori
+mene aadha katori dal khayi,hi,dal:0.5:katori
+ek plate momos khaye,hi,momos:1:plate
+maine teen puri aur aloo sabzi khayi,hi,puri:3:;aloo sabzi:1:
+ek glass chaas piya,hi,chaas:1:glass
+maine ek kela khaya,hi,banana:1:
+do dosa aur sambar khaya,hi,dosa:2:;sambar:1:
+maine ek katori kheer khayi,hi,kheer:1:katori
+mene dhai katori dahi khayi,hi,curd:2.5:katori
+ek plate pav bhaji khayi,hi,pav bhaji:1:plate
+maine 200 gram paneer khaya,hi,paneer:200:g
+subah do paratha aur ek glass lassi,hi,paratha:2:;lassi:1:glass
+mene chaar roti khayi,hi,roti:4:

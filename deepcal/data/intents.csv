@@ -1,0 +1,268 @@
+text,intent
+I ate two rotis and a bowl of dal for lunch,log_meal
+had 3 idli with sambar for breakfast,log_meal
+log one banana,log_meal
+add a glass of milk to my snack,log_meal
+I had chicken biryani for dinner,log_meal
+maine subah do paratha aur chai li,log_meal
+maine lunch mein ek katori dal aur do roti khayi,log_meal
+aaj raat dinner me paneer butter masala aur naan khaya,log_meal
+I just ate a samosa,log_meal
+add 200 grams rice to lunch,log_meal
+i drank a cup of chai,log_meal
+log 2 eggs and toast for breakfast,log_meal
+mene ek plate poha khaya,log_meal
+had an apple and some almonds as a snack,log_meal
+record that I ate rajma chawal,log_meal
+I had a bowl of oats with milk this morning,log_meal
+ek glass lassi piya,log_meal
+dopahar mein chole bhature khaye,log_meal
+I ate half a katori curd,log_meal
+add one plate momos for evening snack,log_meal
+maine abhi do biscuit khaye,log_meal
+log a bowl of khichdi for dinner,log_meal
+i had paneer tikka and salad,log_meal
+dinner mein mene teen roti aur sabzi li,log_meal
+ate a slice of pizza,log_meal
+I had 250 ml coconut water,log_meal
+subah nashte mein upma khaya,log_meal
+add two dosa and chutney,log_meal
+I consumed one cup of coffee and two biscuits,log_meal
+aaj lunch me veg pulao aur raita liya,log_meal
+had a vada pav for snack,log_meal
+log 100 grams paneer,log_meal
+I ate a bowl of dal and rice yesterday evening,log_meal
+mene aadha paratha khaya,log_meal
+i just finished a plate of chowmein,log_meal
+add one egg omelette to breakfast,log_meal
+shaam ko ek samosa aur chai li,log_meal
+ate 4 pieces of dhokla,log_meal
+log two spoons of peanut butter,log_meal
+mango khaya maine abhi,log_meal
+how many calories have I had today,today_summary
+what did I eat today,today_summary
+show me today's summary,today_summary
+how much protein have I had today,today_summary
+aaj maine kitna khaya,today_summary
+aaj ki calories batao,today_summary
+today's nutrition summary please,today_summary
+how many carbs did I eat so far,today_summary
+tell me my total calories for today,today_summary
+what is my protein intake today,today_summary
+mera aaj ka summary batao,today_summary
+kitna protein kha liya aaj,today_summary
+read out my meals for today,today_summary
+what have I eaten so far,today_summary
+give me my daily totals,today_summary
+how much fat have I consumed today,today_summary
+aaj kitni calories li maine,today_summary
+summary of my food intake,today_summary
+what are my macros today,today_summary
+how much sugar did I have today,today_summary
+mere aaj ke meals dikhao,today_summary
+how many calories did I eat today so far,today_summary
+tell me what I ate for lunch today,today_summary
+total fiber today,today_summary
+aaj kitna carbs ho gaya,today_summary
+my calorie intake for today,today_summary
+how much sodium have I had,today_summary
+list everything I logged today,today_summary
+aaj ka hisaab batao,today_summary
+how am I doing today,today_summary
+what's my total so far today,today_summary
+how much protein did I eat in total,today_summary
+dikhao aaj maine kya kya khaya,today_summary
+how many calories do I have left today,remaining_calories
+how much can I still eat today,remaining_calories
+calories remaining for today,remaining_calories
+kitni calories bachi hain aaj ki,remaining_calories
+what is left of my calorie budget,remaining_calories
+how many more calories can I have,remaining_calories
+am I under my calorie limit,remaining_calories
+how much protein do I still need today,remaining_calories
+aaj kitni calorie aur kha sakta hoon,remaining_calories
+remaining macros for today,remaining_calories
+how many calories are left for dinner,remaining_calories
+how much more should I eat today,remaining_calories
+kitna aur khana baaki hai,remaining_calories
+what is my remaining calorie target,remaining_calories
+did I cross my calorie goal,remaining_calories
+how far am I from my target,remaining_calories
+meri bachi hui calories batao,remaining_calories
+how many kcal remain,remaining_calories
+tell me how many calories I have left,remaining_calories
+can I eat more today or have I hit my limit,remaining_calories
+how much protein is left to reach my goal,remaining_calories
+kitni calories budget me bachi hai,remaining_calories
+calories left in my budget,remaining_calories
+how much room do I have for dinner,remaining_calories
+am I over my daily calories,remaining_calories
+what is left of my daily target,remaining_calories
+aaj ke target me kitna bacha hai,remaining_calories
+how many calories to go,remaining_calories
+what is remaining in my limit for today,remaining_calories
+still how many calories can I eat,remaining_calories
+what should I eat for dinner,suggest_meal
+suggest a healthy snack,suggest_meal
+give me a high protein breakfast idea,suggest_meal
+kya khana chahiye dinner me,suggest_meal
+recommend something light for lunch,suggest_meal
+i am hungry what can I eat,suggest_meal
+suggest a low calorie dinner,suggest_meal
+mujhe kuch healthy snack batao,suggest_meal
+what should I have for breakfast tomorrow,suggest_meal
+give me a vegetarian dinner idea,suggest_meal
+koi protein wala option batao,suggest_meal
+what can I eat to get more fiber,suggest_meal
+suggest a meal under 400 calories,suggest_meal
+lunch ke liye kuch suggest karo,suggest_meal
+what to eat after workout,suggest_meal
+i need a sweet craving alternative,suggest_meal
+something quick and healthy for dinner,suggest_meal
+recommend a high protein vegetarian meal,suggest_meal
+aaj raat kya banau,suggest_meal
+what's a good evening snack,suggest_meal
+ideas for a light dinner please,suggest_meal
+kuch halka khane ko batao,suggest_meal
+suggest a meal with dal,suggest_meal
+what can I eat with my remaining calories,suggest_meal
+suggest something for breakfast,suggest_meal
+what should I eat before a workout,suggest_meal
+need a snack idea under 150 calories,suggest_meal
+give me a lunch option with paneer,suggest_meal
+bhookh lagi hai kya khaun,suggest_meal
+what should I cook tonight,suggest_meal
+suggest a high fiber breakfast,suggest_meal
+replace Tuesday's dinner with something vegetarian and high in protein,edit_plan
+swap Wednesday's dinner for something lighter,edit_plan
+make Thursday's dinner lighter and swap paneer for dal,edit_plan
+change my Monday breakfast,edit_plan
+somvar ka dinner badal do,edit_plan
+update Friday lunch to something with less carbs,edit_plan
+in my plan replace Saturday snack with fruit,edit_plan
+mere diet plan me budhvar ka lunch change karo,edit_plan
+swap Sunday breakfast with oats,edit_plan
+make tomorrow's lunch high protein in my plan,edit_plan
+edit my meal plan for Tuesday dinner,edit_plan
+replace the rice in Monday lunch with roti,edit_plan
+change Thursday breakfast to something vegetarian,edit_plan
+my plan mein shukravar ka dinner halka kar do,edit_plan
+swap today's dinner in my plan for something low calorie,edit_plan
+update my plan so Wednesday lunch has no paneer,edit_plan
+replace Saturday dinner with a high protein option,edit_plan
+change Sunday lunch in the diet plan,edit_plan
+make Friday breakfast lighter,edit_plan
+plan me ravivar ka nashta badlo,edit_plan
+swap Monday dinner for khichdi,edit_plan
+modify my diet plan Tuesday snack,edit_plan
+replace Wednesday breakfast with something quick,edit_plan
+change the dinner on Thursday to a vegetarian dish,edit_plan
+meal plan me shanivar ka lunch alag karo,edit_plan
+make Tuesday lunch cheaper in my plan,edit_plan
+update the Saturday snack in my plan to a protein snack,edit_plan
+replace dinner on Friday with soup,edit_plan
+swap my Monday lunch for something without onion,edit_plan
+change tomorrow's breakfast in the plan,edit_plan
+I'm allergic to peanuts and don't eat onion,set_preference
+I am lactose intolerant,set_preference
+I don't eat garlic,set_preference
+main vegetarian hoon,set_preference
+mujhe pyaz nahi pasand,set_preference
+remember that I am allergic to cashews,set_preference
+I am vegan from now on,set_preference
+I avoid gluten,set_preference
+i dont eat eggs,set_preference
+mungfali se allergy hai mujhe,set_preference
+note that I can't have dairy,set_preference
+I am a jain so no onion or garlic,set_preference
+save that I dislike mushrooms,set_preference
+i am eggetarian,set_preference
+I hate fish,set_preference
+mai non veg nahi khata,set_preference
+please remember I am allergic to soy,set_preference
+I don't eat meat,set_preference
+I'm allergic to nuts,set_preference
+add to my profile that I avoid maida,set_preference
+I cannot eat wheat,set_preference
+mujhe lactose intolerance hai,set_preference
+I don't like bitter gourd,set_preference
+keep in mind I am pure veg,set_preference
+I'm allergic to shellfish,set_preference
+mai doodh nahi peeta,set_preference
+no onion no garlic for me,set_preference
+I follow a vegetarian diet,set_preference
+I'm allergic to eggs,set_preference
+remember I don't eat mushrooms,set_preference
+I'm gluten intolerant,set_preference
+mujhe fish se allergy hai,set_preference
+I stay away from dairy,set_preference
+I do not eat red meat,set_preference
+set my diet to vegetarian,set_preference
+I'm vegetarian and allergic to peanuts,set_preference
+give me my weekly summary,weekly_insight
+how was my week of eating,weekly_insight
+weekly insight report please,weekly_insight
+why am I low on protein this week,weekly_insight
+how did I do this week,weekly_insight
+is my diet improving this week,weekly_insight
+is my protein low this week,weekly_insight
+iss hafte ka report do,weekly_insight
+mera is hafte ka diet kaisa raha,weekly_insight
+summarize my last 7 days,weekly_insight
+what are my trends this week,weekly_insight
+how many calories on average this week,weekly_insight
+weekly progress report,weekly_insight
+tell me about my eating habits this week,weekly_insight
+did I eat enough fiber this week,weekly_insight
+read my weekly report aloud,weekly_insight
+is my calorie intake consistent this week,weekly_insight
+iss hafte protein kam kyu hai,weekly_insight
+give me insights on my past week,weekly_insight
+how was my nutrition over the last seven days,weekly_insight
+which day did I eat the most this week,weekly_insight
+this week's wins and areas to improve,weekly_insight
+hafte bhar ka summary batao,weekly_insight
+am I eating too much sugar this week,weekly_insight
+how balanced was my week,weekly_insight
+my 7 day average calories,weekly_insight
+analyze my week,weekly_insight
+what did I do well this week with food,weekly_insight
+why is my weekly protein so low,weekly_insight
+pichle saat din ka analysis do,weekly_insight
+is paneer good for health,chat
+what is the difference between roti and chapati,chat
+hello,chat
+how does intermittent fasting work,chat
+thank you,chat
+is it okay to eat rice at night,chat
+what is a calorie deficit,chat
+kya ghee sehat ke liye acha hai,chat
+who are you,chat
+how much water should I drink,chat
+what are good sources of vitamin B12,chat
+are bananas good before a workout,chat
+how many grams of protein per day is ideal,chat
+what is glycemic index,chat
+tell me a joke,chat
+is brown rice better than white rice,chat
+kya raat ko dahi khana theek hai,chat
+what does fiber do for the body,chat
+good morning,chat
+can I eat eggs every day,chat
+how do I lose belly fat,chat
+what can you do,chat
+hi there,chat
+is jaggery healthier than sugar,chat
+difference between whey and plant protein,chat
+how many hours should I gap between meals,chat
+kya oats weight loss me help karta hai,chat
+what are healthy fats,chat
+how do I use this app,chat
+is coffee bad for health,chat
+what is BMI,chat
+tell me about omega 3,chat
+okay,chat
+is fruit juice healthy,chat
+how can I increase my metabolism,chat
+what is a good pre workout snack for energy,chat
+thanks a lot,chat
